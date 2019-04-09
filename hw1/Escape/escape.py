@@ -1,5 +1,6 @@
 import turtle
 import random
+import pickle
 
 def draw_bag():
 	turtle.shape('turtle')
@@ -23,8 +24,6 @@ def draw_line():
 	angle = 0
 	step = 5
 	t = turtle.Turtle()
-	t.shape('turtle')
-	t.pen(pencolor='red', pensize=3)
 	while not escaped(t.position()):
 		t.left(angle)
 		t.forward(step)
@@ -80,8 +79,15 @@ def draw_spirals_until_escaped():
 		store_position_data(L, t)
 	return L
 
+def draw_random_spirangles():
+	L = []
+	for i in range(10):
+		L.extend(draw_spirals_until_escaped())
+	with open("data_rand", "wb") as f:
+		pickle.dump(L, f)
+
 if(__name__) == '__main__':
 	turtle.setworldcoordinates(-70.0, -70.0, 70.0, 70.0)
 	draw_bag()
-	draw_triangles(100)
+	draw_random_spirangles()
 	turtle.mainloop()
