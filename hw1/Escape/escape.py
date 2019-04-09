@@ -1,4 +1,5 @@
 import turtle
+import random
 
 def draw_bag():
 	turtle.shape('turtle')
@@ -56,8 +57,31 @@ def draw_squares_until_escaped(n):
 	with open("data_square", "wb") as f:
 		pickle.dump(L, f)
 
+def draw_triangles(number):
+	t = turtle.Turtle()
+	for i in range(1, number):
+		t.forward(i * 10)
+		t.right(120)
+
+def draw_spirals_until_escaped():
+	t = turtle.Turtle()
+	t.penup()
+	t.left(random.randint(0, 360))
+	t.pendown()
+
+	i = 0
+	turn = 360 / random.randint(1, 10)
+	L = []
+	store_position_data(L, t)
+	while not escaped(t.position()):
+		i += 1
+		t.forward(i * 5)
+		t.right(turn)
+		store_position_data(L, t)
+	return L
+
 if(__name__) == '__main__':
 	turtle.setworldcoordinates(-70.0, -70.0, 70.0, 70.0)
 	draw_bag()
-	draw_squares_until_escaped(100)
+	draw_triangles(100)
 	turtle.mainloop()
