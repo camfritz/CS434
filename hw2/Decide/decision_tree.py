@@ -72,7 +72,7 @@ def as_rule_str(tree, label, ident=0):
 	s += '\n'
 	return s
 
-data = [[0, 0, False], [1, 0, False], [0, 1, True], [1, 1, True]]
+data = [[0, 0, False], [-1, 0, True], [1, 0, True], [0, -1, True], [0, 1, True]]
 label = ['x', 'y', 'out']
 tree = create_tree(data, label)
 print(as_rule_str(tree, label))
