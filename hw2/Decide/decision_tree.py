@@ -30,3 +30,16 @@ def best_feature_for_split(data):
 		count = collections.Counter([i[-1] for i in data])
 		return count.most_common(1)[0]
 
+def create_tree(data, label):
+	category, count = potential_leaf_node(data)
+	if(count == len(data)):
+		return category
+	node = {}
+	feature = best_feature_for_split(data)
+	feature_label = label[feature]
+	node[feature_label]={}
+	classes = set([d[feature] for d in data])
+	for c in classes:
+		partitioned_data = [d for d in data if d[feature]==c]
+		node[feature_label][c] = create_tree(partitioned_data, label)
+	return node
