@@ -72,7 +72,23 @@ def as_rule_str(tree, label, ident=0):
 	s += '\n'
 	return s
 
-data = [[0, 0, False], [-1, 0, True], [1, 0, True], [0, -1, True], [0, 1, True]]
+def find_edges(tree, label, X, Y):
+	X.sort()
+	Y.sort()
+	diagonals = [i for i in set(X).intersection(set(Y))]
+	diagonals.sort()
+	L = [classify(tree, label, [d, d]) for d in diagonals]
+	low = L.index(False)
+	min_x = X[low]
+	min_y = Y[low]
+
+	high = L[::-1].index(False)
+	max_x = X[len(X) - 1 - high]
+	max_y = Y[len(Y) - 1 - high]
+
+	return (min_x, min_y), (max_x, max_y)
+
+# data = [[0, 0, False], [-1, 0, True], [1, 0, True], [0, -1, True], [0, 1, True]]
 label = ['x', 'y', 'out']
-tree = create_tree(data, label)
+tree = create_tree(L, label)
 print(as_rule_str(tree, label))
