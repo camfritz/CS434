@@ -45,9 +45,12 @@ void draw() {
 	DNA parentA = matingPool.get(geneIndexA);
   DNA parentB = matingPool.get(geneIndexB);
 
-  // for(int i = 0; i < parentA.genes.length; i++) {
-  // 	print((char) parentA.genes[i]);
-  // }
-  // print('\n');
+  DNA child = parentA.crossover(parentB);
+  child.mutate();
+
+  for(int i = 0; i < child.genes.length; i++) {
+  	print((char) child.genes[i]);
+  }
+  print('\n');
 
 }

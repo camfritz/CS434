@@ -2,6 +2,7 @@ class DNA {
 	String target = "to be or not to be";
 	char[] genes = new char[18];
 	float fitness;
+	float mutationRate = 0.01;
 
 	DNA() {
 		for(int i = 0; i < genes.length; i++) {
@@ -17,5 +18,39 @@ class DNA {
 			}
 		}
 		fitness = float(score)/target.length();
+	}
+
+	public DNA crossover(DNA partner) {
+		DNA child = new DNA();
+
+		// int midpoint = int(random(genes.length));
+
+		for(int i = 0; i < genes.length; i++) {
+			// if(i > midpoint) {
+			// 	child.genes[i] = genes[i];
+			// }
+			// else {
+			// 	child.genes[i] = partner.genes[i];
+			// }
+
+			int parentGeneSelection = int(random(0, 1));
+
+			if(parentGeneSelection == 0) {
+				child.genes[i] = genes[i];
+			}
+			else {
+				child.genes[i] = partner.genes[i];
+			}
+		}
+
+		return child;
+	}
+
+	public void mutate() {
+		for(int i = 0; i < genes.length; i++) {
+			if(random(1) < mutationRate) {
+				genes[i] = (char) random(32, 128);
+			}
+		}
 	}
 }
