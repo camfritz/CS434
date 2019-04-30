@@ -1,4 +1,7 @@
 DNA[] population;
+int totalGenerations = 0;
+float averageFitness;
+char[] bestPhrase;
 
 void setup() {
 	size(800, 800);
@@ -15,6 +18,8 @@ void setup() {
 }
 
 void draw() {
+	int currentBestFitness = 0;
+	averageFitness = 0;
 	background(255);
 	if(population == null) {
 		return;
@@ -33,6 +38,7 @@ void draw() {
 		}
 	}
 
+for(int i = 0; i < population.length; i++) {
 	//create children from mating pool genes
 	int geneIndexA = int(random(matingPool.size()));
 	int geneIndexB = int(random(matingPool.size()));
@@ -48,9 +54,30 @@ void draw() {
   DNA child = parentA.crossover(parentB);
   child.mutate();
 
-  for(int i = 0; i < child.genes.length; i++) {
-  	print((char) child.genes[i]);
+  population[i] = child;
+  child.fitness();
+  averageFitness += child.fitness;
+
+  if(child.fitness > currentBestFitness) {
+  	bestPhrase = child.genes;
   }
-  print('\n');
+}
+
+++totalGenerations;
+averageFitness = averageFitness / population.length;
+textSize(25);
+fill(0, 0, 0);
+text("Total Generations: " + totalGenerations, 100, 100);
+text("Average Fitness: " + String.format("%.2f", averageFitness), 100, 150);
+text("Total Population Size: " + population.length, 100, 200);
+text("Mutation Rate: " + int(population[0].mutationRate * 100) + "%", 100, 250);
+text("Best Phrase: " + new String(bestPhrase), 100, 300);
+
+  // for(int i = 0; i < population.length; i++) {
+  // 	for(int j = 0; j < population[i].genes.length; j++) {
+  // 		print((char) population[i].genes[j]);
+ 	//  }
+ 	// 	print('\n');
+  // }
 
 }
