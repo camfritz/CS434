@@ -1,6 +1,6 @@
 class DNA {
-	String target = "to be or not to be";
-	char[] genes = new char[18];
+	String target = "great scott!";
+	char[] genes = new char[12];
 	float fitness;
 	float mutationRate = 0.01;
 
@@ -33,7 +33,7 @@ class DNA {
 			// 	child.genes[i] = partner.genes[i];
 			// }
 
-			int parentGeneSelection = int(random(0, 1));
+			int parentGeneSelection = int(random(0, 2));
 
 			if(parentGeneSelection == 0) {
 				child.genes[i] = genes[i];

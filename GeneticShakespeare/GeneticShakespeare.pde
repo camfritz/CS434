@@ -5,7 +5,7 @@ char[] bestPhrase;
 
 void setup() {
 	size(800, 800);
-	population = new DNA[100];
+	population = new DNA[1000];
 	for(int i = 0; i < population.length; i++) {
 		population[i] = new DNA();
 	}
