@@ -10,4 +10,15 @@ class Obstacle {
       return false;
     }
 	}
+
+	void display() {
+		fill(0);
+		rect(location.x, location.y, w, h);
+	}
+
+	Obstacle(PVector loc, float mW, float mH) {
+		location = loc;
+		w = mW;
+		h = mH;
+	}
 }

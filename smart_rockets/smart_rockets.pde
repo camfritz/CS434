@@ -14,7 +14,7 @@ void setup() {
 void draw() {
 	background(255);
 	fill(0);
-	ellipse(100, 100, 50, 50);
+	ellipse(width/2, 100, 50, 50);
 	if(lifeCounter < lifetime) {
 		population.live();
 		lifeCounter++;

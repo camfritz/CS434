@@ -9,7 +9,7 @@ class Population {
 		population = new Rocket[size];
 		mutationRate = mutationR;
 		for(int i = 0; i < size; i++) {
-			population[i] = new Rocket(new PVector(100, 500));
+			population[i] = new Rocket(new PVector(width/2, 700));
 		}
 	}
 
@@ -20,8 +20,9 @@ class Population {
 	}
 
 	void selection() {
+		matingPool = new ArrayList<Rocket>();
 		for(int i = 0; i < population.length; i++) {
-			int n = int(population[i].fitness * 100);
+			int n = int(population[i].fitness * 1000);
 			if(n == 0) {
 				n = 1;
 			}
