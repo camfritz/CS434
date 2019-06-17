@@ -1,0 +1,9 @@
+1. In this case, the ‘quality’ attribute acted as the target for the prediction
+
+2. Splitting your data into training and test sets allows you to evaluate the performance of your model once it has been trained as you can capture the margin of error by comparing the classification results against the actual data (test data)
+
+3. Using the normal scaling function on the test set will not allow you to perform the same transformation on it as was performed on the training set, even though the scale might be correct. The transformer API resolves this issue by ‘fitting’ a preprocessing step much like fitting a model with data that can be used on any future dataset.
+
+4. Cross validation is a way to measure the performance of a method used to build a model that involves training and evaluating the model multiple times using the same method. The general steps for this are to split your model into k parts (‘folds’), train the model on k-1 folds, and evaluate on the held-out fold. This repeats k times and the results of all evaluations are averaged out as the main performance metric.
+
+5. In python, models are dumped/serialized out to a .pkl file which can then be reserved for future use. The library that is used for serialization in this instance is job lib.
